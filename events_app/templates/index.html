@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Events</h1>
+
+<a href="/create">+ New Event</a>
+
+<!-- 
+    TODO: Use the event objects to display the correct information (and take 
+    out the hardcoded values)
+-->
+
+<a href="/create">+ New Event</a>
+{% if events %}
+    {% for event in events %}
+    <div class="event-container">
+        <h3><a href="/event/{{ event.id }}">{{ event.title }}</a></h3>
+        <p><strong>Date and Time:</strong> {{ event.date_and_time.strftime("%A %B %-d, %Y at %-I:%M %p")}}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p class="small-text">
+            {{ event.guests|length }} attending
+        </p>
+    </div>
+    {% endfor %}
+{% else %}
+    <h2>No Event Was Found</h2>
+{% endif %}
+
+
+
+{% endblock %}
